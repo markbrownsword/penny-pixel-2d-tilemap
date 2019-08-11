@@ -1,40 +1,56 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class GemBehaviour : MonoBehaviour
+/// <summary>
+/// Interface defining messages that can be sent to the gem.
+/// </summary>
+public interface ICollectibleEvents
 {
-	[Header("References")]
-	public GameObject gemVisuals;
-	public GameObject collectedParticleSystem;
-	public CircleCollider2D gemCollider2D;
+    HealthBoost OnItemCollected();
+}
 
-	private float durationOfCollectedParticleSystem;
+public struct HealthBoost
+{
+    public HealthBoost(float energy)
+    {
+        Energy = energy;
+    }
 
+    public float Energy { get; }
+}
 
-	void Start()
-	{
-		durationOfCollectedParticleSystem = collectedParticleSystem.GetComponent<ParticleSystem>().main.duration;
-	}
+public class GemBehaviour : MonoBehaviour, ICollectibleEvents
+{
+    private float _durationOfCollectedParticleSystem;
 
-	void OnTriggerEnter2D(Collider2D theCollider)
-	{
-		if (theCollider.CompareTag ("Player")) {
-			GemCollected ();
-		}
-	}
+    [SerializeField] private GameObject collectedParticleSystem;
+    [SerializeField] private CircleCollider2D gemCollider2D;
+    [SerializeField] private int points = 100;
 
-	void GemCollected()
-	{
-		gemCollider2D.enabled = false;
-		gemVisuals.SetActive (false);
-		collectedParticleSystem.SetActive (true);
-		Invoke ("DeactivateGemGameObject", durationOfCollectedParticleSystem);
+    [Header("References")]
+    [SerializeField] private GameObject gemVisuals;
 
-	}
+    private void Start()
+    {
+        _durationOfCollectedParticleSystem = collectedParticleSystem.GetComponent<ParticleSystem>().main.duration;
+    }
 
-	void DeactivateGemGameObject()
-	{
-		gameObject.SetActive (false);
-	}
+    private IEnumerator DeactivateGameObject(float time)
+    {
+        yield return new WaitForSeconds(time);
+        
+        gameObject.SetActive(false);
+    }
+
+    public HealthBoost OnItemCollected()
+    {
+        gemCollider2D.enabled = false;
+        gemVisuals.SetActive(false);
+        collectedParticleSystem.SetActive(true);
+        
+        StartCoroutine(DeactivateGameObject(_durationOfCollectedParticleSystem));
+        
+        return new HealthBoost(10);
+    }
 }

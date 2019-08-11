@@ -1,55 +1,92 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PlayerPlatformerController : PhysicsObject {
+public class PlayerPlatformerController : PhysicsObject
+{
+    [SerializeField] private EventSystemMessages eventSystemMessages;
+    [SerializeField] private float jumpTakeOffSpeed = 7;
+    [SerializeField] private float maxSpeed = 7;
+    [SerializeField] private float energy = 100;
+    
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
 
-    public float maxSpeed = 7;
-    public float jumpTakeOffSpeed = 7;
-
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
-
+    #region Unity Events
+    
     // Use this for initialization
-    void Awake () 
+    private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer> (); 
-        animator = GetComponent<Animator> ();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
     }
-
+    
+    // Called when player collides with another game object
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var collectibleEvents = other.GetComponentInParent<ICollectibleEvents>();
+        if (collectibleEvents == null)
+        {
+            return;
+        }
+        
+        ApplyHealthBoost(collectibleEvents.OnItemCollected());
+    }
+    
+    #endregion
+    
+    #region Base Overrides
+    
     protected override void ComputeVelocity()
     {
-        Vector2 move = Vector2.zero;
+        var move = Vector2.zero;
+        move.x = Input.GetAxis("Horizontal");
 
-        move.x = Input.GetAxis ("Horizontal");
-
-        if (Input.GetButtonDown ("Jump") && grounded) {
-            velocity.y = jumpTakeOffSpeed;
-        } else if (Input.GetButtonUp ("Jump")) 
+        if (Input.GetButtonDown("Jump") && grounded)
         {
-            if (velocity.y > 0) {
+            velocity.y = jumpTakeOffSpeed;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            if (velocity.y > 0)
+            {
                 velocity.y = velocity.y * 0.5f;
             }
         }
 
-        if(move.x > 0.01f)
+        if (move.x > 0.01f)
         {
-            if(spriteRenderer.flipX == true)
+            if (_spriteRenderer.flipX)
             {
-                spriteRenderer.flipX = false;
+                _spriteRenderer.flipX = false;
             }
-        } 
+        }
         else if (move.x < -0.01f)
         {
-            if(spriteRenderer.flipX == false)
+            if (_spriteRenderer.flipX == false)
             {
-                spriteRenderer.flipX = true;
+                _spriteRenderer.flipX = true;
             }
         }
 
-        animator.SetBool ("grounded", grounded);
-        animator.SetFloat ("velocityX", Mathf.Abs (velocity.x) / maxSpeed);
+        _animator.SetBool("grounded", grounded);
+        _animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
         targetVelocity = move * maxSpeed;
     }
+    
+    #endregion
+
+    #region Private Methods
+
+    private void ApplyHealthBoost(HealthBoost healthBoost)
+    {
+        energy += healthBoost.Energy;
+        
+        foreach (var listener in eventSystemMessages.listeners)
+        {
+            ExecuteEvents.Execute<IPlayerEvents>(listener,null,(x, y) => x.OnPlayerPowerUp(energy));
+        }
+    }
+
+    #endregion
 }
