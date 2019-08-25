@@ -1397,6 +1397,50 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &55049243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55049245}
+  - component: {fileID: 55049244}
+  m_Layer: 0
+  m_Name: MainGameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &55049244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55049243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb50e2990d74140769c5b4a7acbf7694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystemMessages: {fileID: 1054043785}
+--- !u!4 &55049245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55049243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &218028290
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,6 +3442,11 @@ PrefabInstance:
       propertyPath: eventSystemListeners
       value: 
       objectReference: {fileID: 1054043785}
+    - target: {fileID: 114230831923080080, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
+        type: 3}
+      propertyPath: eventSystemMessages
+      value: 
+      objectReference: {fileID: 1054043785}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
 --- !u!4 &867152643 stripped
@@ -3516,7 +3565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2287abc444944680967bc19a8338229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listeners: []
 --- !u!114 &1054043786
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
-/// Singleton containing a list of all the listeners that might want to hear about any message
+/// Component for broadcasting game messages.
 /// </summary>
 public class EventSystemMessages : MonoBehaviour
 {
     private static EventSystemMessages _main;
-    public List<GameObject> listeners = new List<GameObject>();
+    private readonly List<GameObject> _listeners = new List<GameObject>();
 
     /// <summary>
     /// Use this for initialization
@@ -21,7 +22,7 @@ public class EventSystemMessages : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning ("EventSystemListeners re-creation attempted, destroying the new one");
+            Debug.LogWarning ("EventSystemMessages re-creation attempted, destroying the new one");
             Destroy (gameObject);
         }
     }
@@ -31,11 +32,23 @@ public class EventSystemMessages : MonoBehaviour
     /// </summary>
     public void AddListener(GameObject listener)
     {
-        if (listeners.Contains(listener))
+        if (_listeners.Contains(listener))
         {
             return;
         }
         
-        listeners.Add(listener);
+        _listeners.Add(listener);
+    }
+
+    /// <summary>
+    /// Invoke OnPlayerPowerUp Event
+    /// </summary>
+    /// <param name="energy"></param>
+    public void OnPlayerPowerUp(float energy)
+    {
+        foreach (var listener in _listeners)
+        {
+            ExecuteEvents.Execute<IPlayerEvents>(listener,null,(x, y) => x.OnPlayerPowerUp(energy));
+        }
     }
 }
