@@ -81,11 +81,7 @@ public class PlayerPlatformerController : PhysicsObject
     private void ApplyHealthBoost(HealthBoost healthBoost)
     {
         energy += healthBoost.Energy;
-        
-        foreach (var listener in eventSystemMessages.listeners)
-        {
-            ExecuteEvents.Execute<IPlayerEvents>(listener,null,(x, y) => x.OnPlayerPowerUp(energy));
-        }
+        eventSystemMessages.OnPlayerPowerUp(energy);
     }
 
     #endregion
