@@ -1,9 +1,9 @@
 # PennyPixel 2DTilemap
 
-An example project made by Unity Technologies to demonstrate 2D Tilemaps. This repository updates the project to use 2D-extras and Cinemachine from Package Manager.
+An example project made by Unity Technologies to demonstrate 2D Tilemaps. This repository updates the project to use 2D-extras and Cinemachine via Package Manager.
 
-## Unity EditorVersion 
-2019.2.9f1 
+## Required Unity Editor Version 
+2019.2.11f1 
 
 ## References
 [2D World Building w/ Tilemap & Cinemachine](https://learn.unity.com/tutorial/recorded-video-session-2d-world-building-w-tilemap-cinemachine#)\
