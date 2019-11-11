@@ -51,4 +51,15 @@ public class EventSystemMessages : MonoBehaviour
             ExecuteEvents.Execute<IPlayerEvents>(listener,null,(x, y) => x.OnPlayerPowerUp(energy));
         }
     }
+
+    /// <summary>
+    /// Invoke OnPlayerReachedExit Event
+    /// </summary>
+    public void OnPlayerReachedExit()
+    {
+        foreach (var listener in _listeners)
+        {
+            ExecuteEvents.Execute<IPlayerEvents>(listener,null,(x, y) => x.OnPlayerReachedExit());
+        }
+    }
 }

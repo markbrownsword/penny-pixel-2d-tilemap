@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System;
+using UnityEngine;
 
 public class PlayerPlatformerController : PhysicsObject
 {
-    [SerializeField] private EventSystemMessages eventSystemMessages;
+    [SerializeField] private EventSystemMessages eventSystemMessages = null;
     [SerializeField] private float jumpTakeOffSpeed = 7;
     [SerializeField] private float maxSpeed = 7;
     [SerializeField] private float energy = 100;
@@ -24,12 +24,16 @@ public class PlayerPlatformerController : PhysicsObject
     private void OnTriggerEnter2D(Collider2D other)
     {
         var collectibleEvents = other.GetComponentInParent<ICollectibleEvents>();
-        if (collectibleEvents == null)
+        if (collectibleEvents != null)
         {
-            return;
+            ApplyHealthBoost(collectibleEvents.OnItemCollected());
         }
-        
-        ApplyHealthBoost(collectibleEvents.OnItemCollected());
+
+        var goalEvents = other.GetComponentInParent<IGoalEvents>();
+        if (goalEvents != null)
+        {
+            ApplyGoal(goalEvents.OnGoalReached());
+        }
     }
     
     #endregion
@@ -82,6 +86,18 @@ public class PlayerPlatformerController : PhysicsObject
     {
         energy += healthBoost.Energy;
         eventSystemMessages.OnPlayerPowerUp(energy);
+    }
+
+    private void ApplyGoal(Goal goal)
+    {
+        switch(goal)
+        {
+            case Goal.Exit:
+                eventSystemMessages.OnPlayerReachedExit();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(goal), goal, null);
+        }
     }
 
     #endregion

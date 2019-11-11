@@ -8,5 +8,5 @@ public interface IPlayerEvents : IEventSystemHandler
 {
     void OnPlayerHurt(int newHealth);
     void OnPlayerPowerUp(float energy);
-    void OnPlayerReachedExit(GameObject exit);
+    void OnPlayerReachedExit();
 }
