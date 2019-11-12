@@ -2,7 +2,7 @@
 
 public class MainGameController : MonoBehaviour, IPlayerEvents
 {
-    [SerializeField] private EventSystemMessages eventSystemMessages;
+    [SerializeField] private EventSystemMessages eventSystemMessages = null;
     
     // Use this for initialization
     private void Awake()
@@ -32,7 +32,7 @@ public class MainGameController : MonoBehaviour, IPlayerEvents
         Debug.Log("OnPlayerPowerUp!");
     }
 
-    public void OnPlayerReachedExit(GameObject exit)
+    public void OnPlayerReachedExit()
     {
         Debug.Log("OnPlayerReachedExit!");
     }
