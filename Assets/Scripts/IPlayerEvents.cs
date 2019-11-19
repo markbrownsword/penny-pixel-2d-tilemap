@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Inteface defining messages sent by the player
+/// Interface defining messages sent by the player
 /// </summary>
 public interface IPlayerEvents : IEventSystemHandler
 {

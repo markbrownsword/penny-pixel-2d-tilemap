@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerPlatformerController : PhysicsObject
+public class PlayerPlatformerController : PhysicsObject, IPlayerActions
 {
     [SerializeField] private EventSystemMessages eventSystemMessages = null;
     [SerializeField] private float jumpTakeOffSpeed = 7;
     [SerializeField] private float maxSpeed = 7;
-    [SerializeField] private float energy = 100;
+    
+    public float Energy { get; set; }
     
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -84,8 +85,8 @@ public class PlayerPlatformerController : PhysicsObject
 
     private void ApplyHealthBoost(HealthBoost healthBoost)
     {
-        energy += healthBoost.Energy;
-        eventSystemMessages.OnPlayerPowerUp(energy);
+        Energy = Mathf.Clamp(Energy += healthBoost.Energy, 0, 100);
+        eventSystemMessages.OnPlayerPowerUp(Energy);
     }
 
     private void ApplyGoal(Goal goal)
