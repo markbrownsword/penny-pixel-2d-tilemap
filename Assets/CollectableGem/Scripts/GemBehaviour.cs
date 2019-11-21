@@ -25,7 +25,7 @@ public class GemBehaviour : MonoBehaviour, ICollectibleEvents
 
     [SerializeField] private GameObject collectedParticleSystem;
     [SerializeField] private CircleCollider2D gemCollider2D;
-    [SerializeField] private float points = 100;
+    [SerializeField] private float points = 25;
 
     [Header("References")]
     [SerializeField] private GameObject gemVisuals;
