@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerPlatformerController : PhysicsObject, IPlayerActions
 {
     [SerializeField] private EventSystemMessages eventSystemMessages = null;
+    [SerializeField] private InputHandler input = null;
     [SerializeField] private float jumpTakeOffSpeed = 7;
     [SerializeField] private float maxSpeed = 7;
-    
+
     public float Energy { get; set; }
     
     private Animator _animator;
@@ -44,13 +45,13 @@ public class PlayerPlatformerController : PhysicsObject, IPlayerActions
     protected override void ComputeVelocity()
     {
         var move = Vector2.zero;
-        move.x = Input.GetAxis("Horizontal");
+        move.x = input.HorizontalAxis;
 
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (input.JumpButton && grounded)
         {
             velocity.y = jumpTakeOffSpeed;
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (!input.JumpButton)
         {
             if (velocity.y > 0)
             {
