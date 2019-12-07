@@ -1618,6 +1618,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 795111496}
     m_Modifications:
+    - target: {fileID: 1764816090862790, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
+      propertyPath: m_Name
+      value: CollectableGem
+      objectReference: {fileID: 0}
     - target: {fileID: 4532368491988960, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.5
@@ -1661,10 +1665,6 @@ PrefabInstance:
     - target: {fileID: 4532368491988960, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764816090862790, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
-      propertyPath: m_Name
-      value: CollectableGem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
@@ -2458,7 +2458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679012108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.9424977, y: -0.46994755, z: -10.206299}
+  m_LocalPosition: {x: -7.123862, y: -0.46994802, z: -10.206299}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 870006505}
@@ -2504,10 +2504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2051302023}
     m_Modifications:
-    - target: {fileID: 5894680975527536431, guid: 2bed82d24ffb7453f84e91e03df0dfc6,
+    - target: {fileID: 5290305458988037331, guid: 2bed82d24ffb7453f84e91e03df0dfc6,
         type: 3}
-      propertyPath: m_Name
-      value: Goal
+      propertyPath: eventSystemMessages
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5894680975527536425, guid: 2bed82d24ffb7453f84e91e03df0dfc6,
         type: 3}
@@ -2564,10 +2564,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5290305458988037331, guid: 2bed82d24ffb7453f84e91e03df0dfc6,
+    - target: {fileID: 5894680975527536431, guid: 2bed82d24ffb7453f84e91e03df0dfc6,
         type: 3}
-      propertyPath: eventSystemMessages
-      value: 
+      propertyPath: m_Name
+      value: Goal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bed82d24ffb7453f84e91e03df0dfc6, type: 3}
@@ -2931,11 +2931,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 212064061491315838, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114230831923080080, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
         type: 3}
       propertyPath: eventSystem
@@ -2960,6 +2955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxSpeed
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 212064061491315838, guid: 7d60c822c3f1b408ea7a00ecdb5e047a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d60c822c3f1b408ea7a00ecdb5e047a, type: 3}
@@ -3808,6 +3808,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 795111496}
     m_Modifications:
+    - target: {fileID: 1764816090862790, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
+      propertyPath: m_Name
+      value: CollectableGem
+      objectReference: {fileID: 0}
     - target: {fileID: 4532368491988960, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5
@@ -3851,10 +3855,6 @@ PrefabInstance:
     - target: {fileID: 4532368491988960, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1764816090862790, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
-      propertyPath: m_Name
-      value: CollectableGem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75cabef8c622f42229b80fec978c6a10, type: 3}
