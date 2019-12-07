@@ -5,7 +5,7 @@ An example project made by Unity Technologies to demonstrate 2D Tilemaps. This r
 ![Screenshot](/PennyPixel.jpg)
 
 ## Required Unity Editor Version 
-2019.3.0b12
+2019.3.0f1
 
 ## References
 [2D World Building w/ Tilemap & Cinemachine](https://learn.unity.com/tutorial/recorded-video-session-2d-world-building-w-tilemap-cinemachine#)\
