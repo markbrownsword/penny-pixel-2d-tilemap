@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxJumpDuration: 0.2
-  isMobile: 1
+  isMobile: 0
 --- !u!1 &218028290
 GameObject:
   m_ObjectHideFlags: 0
